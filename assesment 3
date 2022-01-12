@@ -1,0 +1,104 @@
+#include<iostream>
+using namespace std;
+void Menu();
+void Menu()
+{
+    string item[6] = { "Ice Tea \t 3","Milk Tea \t 2","Black Tea \t 1","Ice coffee \t 3","Milk coffee \t 2","Black coffee \t 1" };
+    cout << "Items\t\t" << "Prices (AED)" << endl;
+    for (int x = 0; x < 6; x++)
+    {
+        cout << item[x] << endl;
+    }
+}
+int main()
+{
+    char drink, sugar;
+    int y;
+    float mon;
+    cout << "Following is the menu, you may choose your drinks from the menu." << endl;
+    Menu();
+    cout << "Would you like to have Tea or Coffee? (T/C): ";
+    cin >> drink;
+    while (cin.fail() || (drink != 'T' && drink != 't' && drink != 'C' && drink != 'c'))
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "The value you have entered is incorrect.\n Please reply with T or C only: ";
+        cin >> drink;
+    }
+    cout << " Which type of drink would you like to have? \n1 for Ice \n2 for Milk \n3 for Black \n" << endl;
+    cin >> y;
+    while (cin.fail() || (y != 1 && y != 2 && y != 3))
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "You have entered an Invalid value .\n Please reply with 1, 2 or 3: ";
+        cin >> y;
+    }
+    cout << "Enter the amount of money: ";
+    cin >> mon;
+    while (cin.fail() || mon < 1)
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "You have entered Invalid input.\n Please anter an appropriate amount of value: ";
+        cin >> mon;
+    }
+    switch (y)
+    {
+    case 1:
+    {
+        mon = mon - 3;
+        break;
+    }
+    case 2:
+    {
+        mon = mon - 2;
+        break;
+    }
+    case 3:
+    {
+        mon = mon - 1;
+        break;
+    }
+    default:
+        break;
+    }
+    cout << "Would you like to add sugar to your drink? (Y/N): ";
+    cin >> sugar;
+    while (cin.fail() || (sugar != 'Y' && sugar != 'y' && sugar != 'N' && sugar != 'n'))
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "You have entered Invalid input.\n Please enter the value correctly: ";
+        cin >> sugar;
+    }
+    if (mon >= 0)
+    {
+        if (sugar == 'Y' || sugar == 'y')
+        {
+            cout << "Here's your drink with sugar\n And your change: " << mon << endl;
+        }
+        else
+        {
+            cout << "Here's your drink without sugar\n And your change: " << mon << endl;
+        }
+    }
+    else
+    {
+        cout << "Sorry, you do not have enough money. \n Your money has been returned: ";
+        if (y == 3)
+        {
+            cout << mon + 1 << endl;
+        }
+        else  if (y == 2)
+        {
+            cout << mon + 2 << endl;
+        }
+        else
+        {
+            cout << mon + 3 << endl;
+        }
+    }
+    return 0;
+}
